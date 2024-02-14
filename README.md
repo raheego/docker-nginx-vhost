@@ -92,6 +92,11 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 - serv-a 와 serv-b의 포트번호인 8002,8003 을 없애고, 8001 포트인 lb만을 통해서 접속하는 실습
 - pull 하지 않고 commit만 해도 됨
 
+1. serv-a, serv-b commit 해서 image로 만들기
+2. serv-a, serv-b 삭제하기
+3. serv-a serv-b run 하기 (-p옵션 X)
+4. serv-a serv-b 다시 abc로 connect해주기
+
 ```
 $ sudo docker commit serv-a rahee/serv-a
 $ sudo docker commit serv-b rahee/serv-b
