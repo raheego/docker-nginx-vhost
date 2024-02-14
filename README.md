@@ -80,7 +80,6 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 00973b69b91e   nginx     "/docker-entrypoint.…"   52 minutes ago   Up 52 minutes   0.0.0.0:8003->80/tcp, :::8003->80/tcp   serv-b
 2282216488a5   nginx     "/docker-entrypoint.…"   54 minutes ago   Up 54 minutes   0.0.0.0:8002->80/tcp, :::8002->80/tcp   serv-a
 ```
-![image](https://github.com/raheego/docker-nginx-vhost/assets/54056684/9bf4cbb9-7447-4ed7-b5de-a04f4877ae56)
 
 
 ## ref
