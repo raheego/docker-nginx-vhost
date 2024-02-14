@@ -85,8 +85,138 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 
 ### step 7
 - https://github.com/raheego/docker-nginx-vhost/issues/2
+- bridge 네트워크는 하나의 호스트 컴퓨터 내에서 여러 컨테이너 연결
+- host 네트워크는 컨터이너를 호스트 컴퓨터와 동일한 네트워크에서 컨테이너를 돌리기 위해서 사용
+- overlay 네트워크는 여러 호스트에 분산되어 돌아가는 컨테이너들 간에 네트워킹을 위해서 사용
 
-  
+```
+$ docker network ls
+
+
+ $  sudo docker network ls
+ $  sudo docker network create abc
+ 
+$ sudo docker network inspect abc
+[
+    {
+        "Name": "abc",
+        "Id": "890893d530e45b36c7c7c01e465773935b1bf5e2fd79e3a63b683c966f8a5609",
+        "Created": "2024-02-14T12:48:07.928438906+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+
+
+ $ sudo docker network inspect host
+[
+    {
+        "Name": "host",
+        "Id": "a1f6e3af6ac79d9cf675f18ec804e1932d6de94a89edd033489d3900a9c88f10",
+        "Created": "2024-01-29T14:27:58.523572411+09:00",
+        "Scope": "local",
+        "Driver": "host",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": null
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+```
+```
+connect
+$  sudo docker network connect abc serv-a
+$  sudo docker network connect abc serv-b
+$  sudo docker network connect abc lb
+
+$  sudo docker network inspect abc
+
+[
+    {
+        "Name": "abc",
+        "Id": "890893d530e45b36c7c7c01e465773935b1bf5e2fd79e3a63b683c966f8a5609",
+        "Created": "2024-02-14T12:48:07.928438906+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "00973b69b91e1bf2dadd610db75f366344e4476e87b906d8256e0c0b5afb37bc": {
+                "Name": "serv-b",
+                "EndpointID": "8fa424cceec9fb39b988c06a1fd2a9235b5a756a326125a78b110524b87a2de7",
+                "MacAddress": "02:42:ac:12:00:03",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "03ea8ce41073136024943447964f41c03a2196bdff99142329e05f327bdd2239": {
+                "Name": "lb",
+                "EndpointID": "46a2860c4d1fc104a65a6cd9705c4a0c7da322091848ec8fe9a7cfc36dfe78b7",
+                "MacAddress": "02:42:ac:12:00:04",
+                "IPv4Address": "172.18.0.4/16",
+                "IPv6Address": ""
+            },
+            "2282216488a515eaefd3f4867df46b9fab7b4929d22f85b20fd76958c6176f77": {
+                "Name": "serv-a",
+                "EndpointID": "e487e42e02ae059bc69cb80ef68beaf808f8e87d608594c9ff2373b582ca1eda",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+```
 
 ## Try
 - serv-a 와 serv-b의 포트번호인 8002,8003 을 없애고, 8001 포트인 lb만을 통해서 접속하는 실습
