@@ -44,13 +44,14 @@ server {
 }
 ```
 
-### setp 4
+### step 4
 
 - lb 폴더에도 default.conf 복사하기 
 ```bash
  $sudo docker cp config/default.conf lb:/etc/nginx/conf.d
 ```
-###
+
+### step 5
 -  mv config lb 로 옮기기 
 ```
 .
@@ -64,11 +65,18 @@ server {
     └── index.html
 
 ```
+### step 6
+```
+$ vi serv-a/index.html  <h1>A</h1>
+$ cp serv-a/index.html serv-b
+$ vi serv-b/index.html  <h1>A</h1>
+각각 파일 만들어서 컨테이너 /usr/share/nginx/html/ 밑에 각각 cp하기
+$ sudo docker cp serv-a/index.html serv-a:/usr/share/nginx/html/
+$ sudo docker cp serv-b/index.html serv-b:/usr/share/nginx/html/
+```
 ```
  $ sudo docker cp serv-a/index.html serv-a:/usr/share/nginx/html/
-```  
 
-```
  $ sudo docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 00973b69b91e   nginx     "/docker-entrypoint.…"   52 minutes ago   Up 52 minutes   0.0.0.0:8003->80/tcp, :::8003->80/tcp   serv-b
