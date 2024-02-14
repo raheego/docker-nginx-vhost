@@ -82,5 +82,8 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 ```
 - lb 에 각각 담겨 있기 때문에 a,b 번갈아가면서 화면 노출됨
 
+### 
+- https://github.com/beyond-sw-camp/be01-101/issues/33
+
 ## ref
 - https://hub.docker.com/_/nginx
