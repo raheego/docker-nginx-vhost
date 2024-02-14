@@ -80,7 +80,7 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 00973b69b91e   nginx     "/docker-entrypoint.…"   52 minutes ago   Up 52 minutes   0.0.0.0:8003->80/tcp, :::8003->80/tcp   serv-b
 2282216488a5   nginx     "/docker-entrypoint.…"   54 minutes ago   Up 54 minutes   0.0.0.0:8002->80/tcp, :::8002->80/tcp   serv-a
 ```
-
+- lb 에 각각 담겨 있기 때문에 a,b 번갈아가면서 화면 노출됨
 
 ## ref
 - https://hub.docker.com/_/nginx
