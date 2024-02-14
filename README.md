@@ -83,8 +83,10 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 - lb 에 각각 담겨 있기 때문에 a,b 번갈아가면서 화면 노출됨
 - lb가 대리자 프록시 역할
 
-### 
+### step 7
 - https://github.com/raheego/docker-nginx-vhost/issues/2
+
+  
 
 ## Try
 - serv-a 와 serv-b의 포트번호인 8002,8003 을 없애고, 8001 포트인 lb만을 통해서 접속하는 실습
@@ -111,6 +113,7 @@ $ docker network connect abc serv-b
 
 $ sudo docker network inspect abc // 컨테이너 확인 
 ```
+
 
 ## ref
 - https://hub.docker.com/_/nginx
