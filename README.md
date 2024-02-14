@@ -75,8 +75,6 @@ $ sudo docker cp serv-a/index.html serv-a:/usr/share/nginx/html/
 $ sudo docker cp serv-b/index.html serv-b:/usr/share/nginx/html/
 ```
 ```
- $ sudo docker cp serv-a/index.html serv-a:/usr/share/nginx/html/
-
  $ sudo docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 00973b69b91e   nginx     "/docker-entrypoint.…"   52 minutes ago   Up 52 minutes   0.0.0.0:8003->80/tcp, :::8003->80/tcp   serv-b
