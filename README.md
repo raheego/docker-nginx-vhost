@@ -69,21 +69,22 @@ server {
 ```
 $ vi serv-a/index.html  <h1>A</h1>
 $ cp serv-a/index.html serv-b
-$ vi serv-b/index.html  <h1>A</h1>
+$ vi serv-b/index.html  <h1>B</h1>
 각각 파일 만들어서 컨테이너 /usr/share/nginx/html/ 밑에 각각 cp하기
 $ sudo docker cp serv-a/index.html serv-a:/usr/share/nginx/html/
 $ sudo docker cp serv-b/index.html serv-b:/usr/share/nginx/html/
 ```
 ```
- $ sudo docker cp serv-a/index.html serv-a:/usr/share/nginx/html/
-
  $ sudo docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 00973b69b91e   nginx     "/docker-entrypoint.…"   52 minutes ago   Up 52 minutes   0.0.0.0:8003->80/tcp, :::8003->80/tcp   serv-b
 2282216488a5   nginx     "/docker-entrypoint.…"   54 minutes ago   Up 54 minutes   0.0.0.0:8002->80/tcp, :::8002->80/tcp   serv-a
 ```
-![image](https://github.com/raheego/docker-nginx-vhost/assets/54056684/9bf4cbb9-7447-4ed7-b5de-a04f4877ae56)
+- lb 에 각각 담겨 있기 때문에 a,b 번갈아가면서 화면 노출됨
+- lb가 대리자 프록시 역할
 
+### 
+- https://github.com/raheego/docker-nginx-vhost/issues/2
 
 ## ref
 - https://hub.docker.com/_/nginx
