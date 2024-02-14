@@ -250,5 +250,38 @@ $ sudo docker network inspect abc // 컨테이너 확인
 ```
 
 
+### Try 2(Dockerfile 생성 후 build, run)
+
+- 도커 파일 생성 
+```
+$ vi lb/Dockerfile
+From nginx
+COPY config/default.conf /etc/nginx/conf.d/
+
+$ vi serv-a/Dockerfile 
+FROM nginx
+COPY index.html /usr/share/nginx/html
+
+$ vi serv-b/Dockerfile 
+FROM nginx
+COPY index.html /usr/share/nginx/html
+
+build
+$ sudo docker build -t serv-b:\n0.1.0 .
+$ sudo docker build -t serv-b:0.1.0 .
+$ sudo docker build -t lb:0.1.0 .
+
+run
+$ sudo docker run -d --name lb -p 8001:80 lb:0.1.0
+$ sudo docker run -d --name serv-a serv-a:0.1.0
+$ sudo docker run -d --name serv-b serv-b:0.1.0
+
+network
+$ docker network create dockerfileNW
+$ sudo docker network connect dockerfileNW serv-a
+$ sudo docker network connect dockerfileNW serv-b
+$ sudo docker network connect dockerfileNW lb
+```
+
 ## ref
 - https://hub.docker.com/_/nginx
