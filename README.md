@@ -251,9 +251,8 @@ $ sudo docker network inspect abc // 컨테이너 확인
 
 
 ### Try 2(Dockerfile 생성 후 build, run)
-
-- 도커 파일 생성 
 ```
+- 도커 파일 생성 
 $ vi lb/Dockerfile
 From nginx
 COPY config/default.conf /etc/nginx/conf.d/
