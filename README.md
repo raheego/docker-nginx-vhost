@@ -81,6 +81,7 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 2282216488a5   nginx     "/docker-entrypoint.…"   54 minutes ago   Up 54 minutes   0.0.0.0:8002->80/tcp, :::8002->80/tcp   serv-a
 ```
 - lb 에 각각 담겨 있기 때문에 a,b 번갈아가면서 화면 노출됨
+- lb가 대리자 프록시 역할
 
 ### 
 - https://github.com/raheego/docker-nginx-vhost/issues/2
