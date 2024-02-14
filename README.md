@@ -99,8 +99,8 @@ $ sudo docker commit serv-b rahee/serv-b
 $ docker rm serv-a
 $ docker rm serv-b
 
-$ docker run --name serv-a -d rahee/serv-a  // -p옵션 없이 run 하기
-$ docker run --name serv-b -d rahee/serv-b  // -p옵션 없이 run 하기
+$ sudo docker run --name serv-a -d rahee/serv-a  // -p옵션 없이 run 하기
+$ sudo docker run --name serv-b -d rahee/serv-b  // -p옵션 없이 run 하기
 
 $ sudo docker ps
 CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS             PORTS                                   NAMES
@@ -108,8 +108,8 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS   
 a18cd1a18fff   rahee/serv-a   "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes       80/tcp                                  serv-a
 03ea8ce41073   nginx:latest   "/docker-entrypoint.…"   4 hours ago     Up About an hour   0.0.0.0:8001->80/tcp, :::8001->80/tcp   lb
 
-$ docker network connect abc serv-a
-$ docker network connect abc serv-b
+$ sudo docker network connect abc serv-a
+$ sudo docker network connect abc serv-b
 
 $ sudo docker network inspect abc // 컨테이너 확인 
 ```
