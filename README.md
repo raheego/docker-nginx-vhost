@@ -86,5 +86,31 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 ### 
 - https://github.com/raheego/docker-nginx-vhost/issues/2
 
+## Try
+- serv-a 와 serv-b의 포트번호인 8002,8003 을 없애고, 8001 포트인 lb만을 통해서 접속하는 실습
+- pull 하지 않고 commit만 해도 됨
+
+```
+$ sudo docker commit serv-a rahee/serv-a
+$ sudo docker commit serv-b rahee/serv-b
+
+$ docker rm serv-a
+$ docker rm serv-b
+
+$ docker run --name serv-a -d rahee/serv-a  // -p옵션 없이 run 하기
+$ docker run --name serv-b -d rahee/serv-b  // -p옵션 없이 run 하기
+
+$ sudo docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS             PORTS                                   NAMES
+11b057d6e7ec   rahee/serv-b   "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes       80/tcp                                  serv-b
+a18cd1a18fff   rahee/serv-a   "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes       80/tcp                                  serv-a
+03ea8ce41073   nginx:latest   "/docker-entrypoint.…"   4 hours ago     Up About an hour   0.0.0.0:8001->80/tcp, :::8001->80/tcp   lb
+
+$ docker network connect abc serv-a
+$ docker network connect abc serv-b
+
+$ sudo docker network inspect abc // 컨테이너 확인 
+```
+
 ## ref
 - https://hub.docker.com/_/nginx
