@@ -2,6 +2,8 @@
 
 ## docker Load Balancing
 ![image](https://github.com/raheego/docker-nginx-vhost/assets/54056684/a362f2bb-e476-48b3-8e64-46f63245d80a)
+![image](https://github.com/raheego/docker-nginx-vhost/assets/54056684/610b5ecf-b1d7-4fa0-bbc1-a9a78f734d72)
+
 - https://www.nginx.com/resources/glossary/load-balancing/
 
 ### step 1
@@ -283,5 +285,5 @@ $ sudo docker network connect dockerfileNW lb
 ```
 
 ## ref
-- https://github.com/pySatellite/docker-nginx-vhost
 - https://hub.docker.com/_/nginx
+- https://github.com/pySatellite/docker-nginx-vhost
